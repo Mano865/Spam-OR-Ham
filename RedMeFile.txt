@@ -1,0 +1,76 @@
+
+# SMS Spam Detection using LSTM and Grey Wolf Optimizer (GWO)
+
+## Overview
+This project implements a spam detection model for SMS messages using a deep learning approach based on LSTM (Long Short-Term Memory) networks. To optimize the model structure, the Grey Wolf Optimizer (GWO) algorithm is used to find the best number of LSTM layers and neurons per layer.
+
+## Software Dependencies
+
+Ensure the following packages are installed in your environment:
+
+```bash
+pip install numpy pandas scikit-learn imbalanced-learn nltk tensorflow
+```
+
+Also, download necessary NLTK data:
+
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+```
+
+## How to Run the Code
+
+1. Place the dataset file (`SMSSpamCollection.csv`) in the correct path on your machine. Make sure it's formatted with a tab separator and two columns: label and message text.
+
+2. Run the script step-by-step in a Jupyter Notebook or execute it as a Python script.
+
+3. The code will:
+   - Preprocess the text data (tokenization, stemming, stopword removal).
+   - Tokenize and pad the sequences.
+   - Encode the labels.
+   - Use Grey Wolf Optimizer to find the best LSTM architecture.
+   - Train the model using the optimized parameters.
+   - Evaluate the model on the test set.
+
+## Interpreting the Outputs
+
+- `Number of layers:` and `Number of neurons:` — These values show the best architecture found by the GWO.
+- `Accuracy:` — Indicates how well the model performs on unseen test data.
+- `Classification Report:` — Provides precision, recall, and F1-score for both spam and ham categories.
+
+## Model Saving and Loading
+
+The model weights are saved to a file called `best_model.weights.h5` and loaded again to ensure consistency in prediction.
+
+## Example Output After (Optimization)
+
+```
+Number of layers: 2
+Number of neurons: 128
+Accuracy: 0.9860
+
+Class	Precision	Recall	F1-Score  Support
+Ham (0.0)	0.99	1.00	0.99	    866
+Spam (1.0)	0.98	0.91	0.95	    134
+Accuracy	–	–	0.99	    1000
+Macro Avg	0.99	0.95	0.97	    1000
+Weighted Avg	0.99	0.99	0.99	    1000
+
+## Example Output Before (Optimization)
+
+Class	Precision	Recall	F1-Score   Support
+Ham (0.0)	0.99	0.99	0.99	    866
+Spam (1.0)	0.95	0.90	0.93	    134
+Accuracy	–	–	0.98	   1000
+Macro Avg	0.97	0.95	0.96	   1000
+Weighted Avg	0.98	0.98	0.98	   1000
+
+
+## Notes
+- Class imbalance is handled using `class_weight` in model training.
+- GWO is used for structure optimization, not hyperparameters like learning rate.
+
+## Contact
+For more information, contact the developer or refer to the project's notebook/script.
